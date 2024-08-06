@@ -99,11 +99,11 @@ const Header = () => {
                                 style={{ height: '200px', objectFit: 'contain', marginTop:'20px' }} 
                             />
                             <Card.Body>
-                                <Card.Title>{product.title}</Card.Title>
+                                <Card.Title style={{color:'red'}}>{product.title}</Card.Title>
                                 <Card.Text>
                                     Price: ${product.price}
                                 </Card.Text>
-                                <Card.Text>
+                                <Card.Text style={{color:'red'}}>
                                     Rating: {product.rating.rate}
                                 </Card.Text>
                             </Card.Body>
