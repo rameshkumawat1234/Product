@@ -10,12 +10,14 @@ const Header = () => {
     const [products, setProducts] = useState([]);
     const [productFilter, setProductFilter] = useState([]);
     const [search, setSearch] = useState("");
-
+    // const [loading , setLoading]=useState(false)
     const getData = async () => {
         try {
+            // setLoading(true)
             let res = await axios.get("https://fakestoreapi.com/products");
             setProducts(res.data);
             setProductFilter(res.data);
+            // setLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -63,7 +65,7 @@ const Header = () => {
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <div className='d-flex flex-column flex-md-row align-items-center'>
                         <span className="me-md-3">Total Filtered Products: {productFilter.length}</span>
-                        <span className="me-md-3">Filter Price: {productFilter.length}</span>
+                        {/* <span className="me-md-3">Filter Price: {productFilter.length}</span> */}
 
                         <span>Total Products: {products.length}</span>
                     </div>
@@ -89,6 +91,7 @@ const Header = () => {
                 </form>
             </Card>
             <div className="row">
+                {/* {loading} */}
                 {productFilter.map((product) => (
                     <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={product.id}>
                         <Card className="w-100 h-100">
@@ -96,20 +99,21 @@ const Header = () => {
                                 variant="top" 
                                 src={product.image} 
                                 alt={product.title} 
-                                style={{ height: '200px', objectFit: 'contain', marginTop:'20px' }} 
+                                style={{ height: '250px', objectFit: 'contain', marginTop:'20px',}} 
                             />
                             <Card.Body>
                                 <Card.Title style={{color:'red'}}>{product.title}</Card.Title>
                                 <Card.Text>
-                                    Price: ${product.price}
+                                   <h4> Price: ${product.price}</h4>
                                 </Card.Text>
                                 <Card.Text style={{color:'red'}}>
-                                    Rating: {product.rating.rate}
+                                <h4>  Rating:{product.rating.rate}</h4>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                     </div>
                 ))}
+            
             </div>
         </div>
     );
